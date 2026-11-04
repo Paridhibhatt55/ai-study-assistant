@@ -1,0 +1,61 @@
+:root{
+  --bg:#f3f5f1; --panel:#ffffff; --ink:#1b2a26; --muted:#5d6e68; --line:#d5ddd8;
+  --accent:#0f6b5c; --accent-ink:#ffffff; --good:#1b7f45; --bad:#b3261e; --soft:#e4efe9;
+}
+[data-theme="dark"]{
+  --bg:#111a17; --panel:#1a2622; --ink:#e7efeb; --muted:#9fb1aa; --line:#2c3b36;
+  --accent:#4fc3a8; --accent-ink:#08231d; --good:#5fd08a; --bad:#ff8a80; --soft:#233630;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",system-ui,sans-serif;transition:background .2s,color .2s}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--line);background:var(--panel)}
+h1{margin:0;font:700 1.5rem Georgia,serif}
+h2{margin:0;font:700 1.1rem Georgia,serif}
+.layout{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;padding:20px;max-width:1200px;margin:auto}
+.history-panel{grid-column:1/-1}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+label{display:block;font-weight:600;margin-bottom:6px}
+.opts label{flex:1;min-width:150px}
+textarea,input,select{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.between{justify-content:space-between;align-items:center}
+button{font:inherit;cursor:pointer;border-radius:6px;padding:9px 16px;border:1px solid var(--accent)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.primary{background:var(--accent);color:var(--accent-ink);font-weight:600;width:100%}
+.primary:disabled{opacity:.5;cursor:not-allowed}
+.ghost{background:transparent;color:var(--accent)}
+.ghost:hover{background:var(--soft)}
+details{margin-bottom:14px;border:1px solid var(--line);border-radius:6px;padding:8px 12px}
+summary{cursor:pointer;font-weight:600}
+.hint,.counter{color:var(--muted);font-size:.85rem}
+.counter{text-align:right}
+.counter.warn{color:var(--bad);font-weight:600}
+.error{margin-top:12px;padding:10px 12px;border-left:4px solid var(--bad);background:var(--soft);color:var(--bad)}
+.loading{margin-top:12px;display:flex;align-items:center;gap:10px;color:var(--muted)}
+.spinner{width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{color:var(--muted);padding:40px 10px;text-align:center}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.tab{background:none;border:none;border-bottom:3px solid transparent;border-radius:0;color:var(--muted)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.q{border:1px solid var(--line);border-radius:8px;padding:12px;margin:0 0 12px}
+.q legend{font-weight:600;padding:0 6px}
+.q label{font-weight:400;display:flex;gap:8px;align-items:center;padding:4px 6px;border-radius:4px;cursor:pointer}
+.q label.correct{background:var(--soft);color:var(--good);font-weight:600}
+.q label.wrong{color:var(--bad);text-decoration:line-through}
+.score{margin:12px 0;font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{perspective:800px;height:170px;cursor:pointer}
+.card-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--soft)}
+.face.back{transform:rotateY(180deg);background:var(--accent);color:var(--accent-ink)}
+.face button{margin-top:8px;padding:3px 10px;font-size:.8rem;background:var(--panel);color:var(--ink)}
+.card.known .face{border-color:var(--good);border-width:2px}
+.history{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.history li{display:flex;gap:8px}
+.history .item{flex:1;text-align:left;background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.history .item small{display:block;color:var(--muted)}
+@media (max-width:800px){.layout{grid-template-columns:1fr;padding:12px}.top{padding:12px}}
+@media (prefers-reduced-motion:reduce){.card-inner,.spinner{transition:none;animation-duration:2s}}

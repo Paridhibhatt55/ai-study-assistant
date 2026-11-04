@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Study Assistant</h1>
+  <button id="themeBtn" class="ghost" aria-label="Toggle dark or light mode">Dark mode</button>
+</header>
+
+<main class="layout">
+  <section class="panel input-panel">
+    <details id="settings">
+      <summary>Settings: API key</summary>
+      <p class="hint">Get a free Gemini key at aistudio.google.com/apikey. It is stored only in this browser.</p>
+      <div class="row">
+        <input id="apiKey" type="password" placeholder="Paste your API key" autocomplete="off">
+        <button id="saveKey" class="ghost">Save key</button>
+      </div>
+    </details>
+
+    <label for="notes">Your notes or a topic</label>
+    <textarea id="notes" rows="10" placeholder="Paste class notes, or type a topic like 'Photosynthesis'"></textarea>
+    <div id="counter" class="counter">0 / 8000</div>
+
+    <div class="row opts">
+      <label>Answer style
+        <select id="style">
+          <option value="Explain like I am 10">Explain like I am 10</option>
+          <option value="Exam-focused" selected>Exam-focused</option>
+          <option value="Detailed">Detailed</option>
+        </select>
+      </label>
+      <label>Quiz difficulty
+        <select id="difficulty">
+          <option>easy</option><option selected>medium</option><option>hard</option>
+        </select>
+      </label>
+    </div>
+
+    <button id="generate" class="primary">Generate study material</button>
+    <div id="loading" class="loading" hidden><span class="spinner"></span> The AI is working...</div>
+    <div id="error" class="error" role="alert" hidden></div>
+  </section>
+
+  <section class="panel output-panel">
+    <div id="empty" class="empty">Your summary, quiz and flashcards will appear here.</div>
+    <div id="results" hidden>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="summary">Summary</button>
+        <button class="tab" data-tab="quiz">Quiz</button>
+        <button class="tab" data-tab="cards">Flashcards</button>
+      </div>
+
+      <div id="tab-summary" class="tabpane">
+        <p id="summaryText"></p>
+        <div class="row">
+          <button id="copyBtn" class="ghost">Copy</button>
+          <button id="downloadBtn" class="ghost">Download .txt</button>
+          <button id="speakBtn" class="ghost">Read aloud</button>
+        </div>
+      </div>
+
+      <div id="tab-quiz" class="tabpane" hidden>
+        <div id="quizBox"></div>
+        <button id="checkQuiz" class="primary">Check answers</button>
+        <div id="score" class="score"></div>
+      </div>
+
+      <div id="tab-cards" class="tabpane" hidden>
+        <div id="knownCount" class="score"></div>
+        <div id="cardsBox" class="cards"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel history-panel">
+    <div class="row between">
+      <h2>History</h2>
+      <button id="clearHistory" class="ghost">Delete all</button>
+    </div>
+    <ul id="historyList" class="history"></ul>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
