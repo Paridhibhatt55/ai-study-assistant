@@ -2,9 +2,6 @@
 
 Paste class notes or type a topic and the app uses an AI model (Google Gemini) to create a summary, a 5-question quiz and flashcards.
 
-## Screenshot
-_Add a screenshot here (e.g. `screenshot.png`)._
-
 ## Features
 - Notes box, Generate button, and Settings for your own API key (kept in localStorage, never in the code)
 - Summary, Quiz (score + correct answers) and Flashcards (click to flip, mark as known) in tabs
